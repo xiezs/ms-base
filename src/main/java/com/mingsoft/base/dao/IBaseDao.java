@@ -95,7 +95,7 @@ public interface IBaseDao<D extends Serializable> {
 	 * @param sql
 	 *            sql语句
 	 */
-	void excuteSql(@Param("sql") String sql);
+	Object excuteSql(@Param("sql") String sql);
 
 	/**
 	 * SQL添加记录

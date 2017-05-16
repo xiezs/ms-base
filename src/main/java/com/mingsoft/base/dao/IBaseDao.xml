@@ -111,9 +111,9 @@
 	<!-- 根据sql动态删除表结束 -->
 
 	<!-- 导入sql语句 -->
-	<update id="excuteSql" parameterType="String" statementType="STATEMENT">
+	<select  id="excuteSql" parameterType="String" statementType="STATEMENT" resultType="list" >
 		${sql}
-	</update>
+	</select>
 	<!--导入sql语句 -->
 
 

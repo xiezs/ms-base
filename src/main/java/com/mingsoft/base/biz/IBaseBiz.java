@@ -135,7 +135,7 @@ public interface IBaseBiz {
 	 * @param sql
 	 *            sql语句
 	 */
-	void excuteSql(String sql);
+	Object excuteSql(String sql);
 
 	/**
 	 * 更具ID查询实体信息

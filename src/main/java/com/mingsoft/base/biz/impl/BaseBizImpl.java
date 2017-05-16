@@ -156,9 +156,9 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public void excuteSql(String sql) {
+	public Object excuteSql(String sql) {
 		// TODO Auto-generated method stub
-		getDao().excuteSql(sql);
+		return getDao().excuteSql(sql);
 	}
 
 	/**
