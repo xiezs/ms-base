@@ -111,7 +111,7 @@
 	<!-- 根据sql动态删除表结束 -->
 
 	<!-- 导入sql语句 -->
-	<select  id="excuteSql" parameterType="String" statementType="STATEMENT" resultType="list" >
+	<select  id="excuteSql" parameterType="String" statementType="STATEMENT" resultType="java.util.LinkedHashMap" >
 		${sql}
 	</select>
 	<!--导入sql语句 -->
