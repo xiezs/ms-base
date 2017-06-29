@@ -35,7 +35,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -45,20 +44,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.JSONSerializer;
+import com.alibaba.fastjson.serializer.PropertyFilter;
+import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.mingsoft.base.constant.Const;
 import com.mingsoft.base.constant.e.BaseCookieEnum;
 import com.mingsoft.base.constant.e.BaseEnum;
 import com.mingsoft.base.constant.e.BaseSessionEnum;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.base.entity.ResultJson;
-import com.mingsoft.base.entity.SessionEntity;
 import com.mingsoft.util.Base64Util;
 import com.mingsoft.util.StringUtil;
 
@@ -541,6 +540,30 @@ public abstract class BaseAction {
 	protected void outJson(HttpServletResponse response, List list) {
 		this.outJson(response, JSONArray.toJSONString(list));
 	}
+	
+	/**
+	 * 将list以json字符串格式输出，可以设置过滤属性字断
+	 * @param response
+	 * @param list 记录集合
+	 * @param filters 需要过滤调的属性字断,当只过滤一个属性的时候需要使用new String[]传递
+	 */
+	protected void outJson(HttpServletResponse response, List list,final String ... filters) {
+		PropertyFilter filter = new PropertyFilter() {
+			public boolean apply(Object source, String name, Object value) {
+			List list = Arrays.asList(filters);
+		   if(list.contains(name)) {
+		           return false;
+		        }
+		        return true;
+		    }
+		};
+		SerializeWriter sw = new SerializeWriter();
+		JSONSerializer serializer = new JSONSerializer(sw);
+		serializer.getPropertyFilters().add(filter);
+		serializer.write(list);
+		this.outJson(response, sw.toString());
+	}
+	
 	
 	/**
 	 * 将list以json字符串格式输出
