@@ -578,6 +578,17 @@ public abstract class BaseAction {
 	protected void outJson(HttpServletResponse response, List list,String dateFmt) {
 		this.outJson(response, JSONArray.toJSONStringWithDateFormat(list,dateFmt));
 	}
+	
+	/**
+	 *  
+	 * @param response
+	 *            HttpServletResponse对象
+	 * @param path
+	 * 			日期格式化
+	 */
+	protected void redirect(HttpServletResponse response,String path) {
+		this.outString(response, "<script>location.href='"+path+"'</script>");
+	}
 
 	/**
 	 * 输出String数据字符串
