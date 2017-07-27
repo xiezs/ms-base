@@ -29,7 +29,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mingsoft.base.entity.BaseEntity;
 
-import net.mingsoft.elasticsearch.mapping.BaseMapping;
+import net.mingsoft.base.elasticsearch.mapping.BaseMapping;
 
 /**
  * 基础dao

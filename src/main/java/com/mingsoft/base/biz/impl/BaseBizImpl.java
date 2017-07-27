@@ -34,7 +34,7 @@ import com.mingsoft.base.dao.IBaseDao;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.util.PageUtil;
 
-import net.mingsoft.elasticsearch.mapping.BaseMapping;
+import net.mingsoft.base.elasticsearch.mapping.BaseMapping;
 
 /**
  * 基础业务实现

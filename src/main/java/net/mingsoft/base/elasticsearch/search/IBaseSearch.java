@@ -1,4 +1,4 @@
-package net.mingsoft.elasticsearch.search;
+package net.mingsoft.base.elasticsearch.search;
 
 import java.io.Serializable;
 
