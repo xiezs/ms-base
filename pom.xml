@@ -55,6 +55,7 @@
 		<shiro-freemarker-tags.version>0.2-SNAPSHOT</shiro-freemarker-tags.version>
 		<activiti.version>5.21.0</activiti.version>
 		<spring.security.version>4.1.2.RELEASE</spring.security.version>
+		<spring-data-elasticsearch>2.1.4.RELEASE</spring-data-elasticsearch>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -379,7 +380,12 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-
+		<dependency>
+        	<groupId>org.springframework.data</groupId>
+        	<artifactId>spring-data-elasticsearch</artifactId>
+        	<version>${spring-data-elasticsearch}</version>
+   		 </dependency> 
+   		 
 		<!-- Activiti -->
 		<dependency>
 			<groupId>org.activiti</groupId>
@@ -459,6 +465,8 @@
 			<artifactId>activiti-modeler</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
+		
+
 	</dependencies>
 	<build>
 		<resources>

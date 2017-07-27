@@ -34,6 +34,8 @@ import com.mingsoft.base.dao.IBaseDao;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.util.PageUtil;
 
+import net.mingsoft.elasticsearch.mapping.BaseMapping;
+
 /**
  * 基础业务实现
  * 
@@ -195,4 +197,12 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 		// TODO Auto-generated method stub
 		return getDao().query(entity);
 	}
+
+	@Override
+	public List<BaseMapping> queryForSearchMapping(BaseMapping base) {
+		// TODO Auto-generated method stub
+		return getDao().queryForSearchMapping(base);
+	}
+	
+	
 }

@@ -30,6 +30,8 @@ import com.mingsoft.base.constant.e.TableEnum;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.util.PageUtil;
 
+import net.mingsoft.elasticsearch.mapping.BaseMapping;
+
 /**
  * 基础业务类
  * 
@@ -274,5 +276,12 @@ public interface IBaseBiz {
 	 * @param entity
 	 */
 	void updateEntity(BaseEntity entity);
+	
+	/**
+	 * 查询，只提供给搜索引擎做数据同步使用
+	 * @param base mapping实体
+	 * @return 单条或多条数据
+	 */
+	List<BaseMapping> queryForSearchMapping(BaseMapping base);
 
 }

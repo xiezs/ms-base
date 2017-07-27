@@ -29,6 +29,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mingsoft.base.entity.BaseEntity;
 
+import net.mingsoft.elasticsearch.mapping.BaseMapping;
+
 /**
  * 基础dao
  * 
@@ -241,4 +243,12 @@ public interface IBaseDao<D extends Serializable> {
 	 *            实体
 	 */
 	void updateEntity(BaseEntity entity);
+	
+	/**
+	 * 查询，只提供给搜索引擎做数据同步使用
+	 * @param base mapping实体
+	 * @return 单条或多条数据
+	 */
+	List<BaseMapping> queryForSearchMapping(BaseMapping base);
+	
 }
