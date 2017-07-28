@@ -18,7 +18,7 @@ The MIT License (MIT) * Copyright (c) 2017 铭飞科技(mingsoft.net)
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package net.mingsoft.base.elasticsearch.mapping;
+package net.mingsoft.base.elasticsearch.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,32 +31,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *          创建日期：2017年6月2日<br/>
  *          历史修订：<br/>
  */
-public abstract class BaseMapping {
+public abstract class SearchBean {
 
-	private String id;
 
-	@JsonIgnore
 	private int pageNumber;
 	
-	@JsonIgnore
 	private int pageSize;
 	
-	@JsonIgnore
 	private String orderBy;
 	
-	@JsonIgnore
 	private String order;
 	
-	@JsonIgnore
 	private String keyworkd;
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public int getPageNumber() {
 		return pageNumber;

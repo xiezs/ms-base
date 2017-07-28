@@ -30,7 +30,7 @@ import com.mingsoft.base.constant.e.TableEnum;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.util.PageUtil;
 
-import net.mingsoft.base.elasticsearch.mapping.BaseMapping;
+import net.mingsoft.base.elasticsearch.bean.BaseMapping;
 
 /**
  * 基础业务类
