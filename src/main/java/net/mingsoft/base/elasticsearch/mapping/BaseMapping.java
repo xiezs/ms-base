@@ -20,6 +20,8 @@ The MIT License (MIT) * Copyright (c) 2017 铭飞科技(mingsoft.net)
  */
 package net.mingsoft.base.elasticsearch.mapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * 搜索引擎mapping类
@@ -33,6 +35,21 @@ public abstract class BaseMapping {
 
 	private String id;
 
+	@JsonIgnore
+	private int pageNumber;
+	
+	@JsonIgnore
+	private int pageSize;
+	
+	@JsonIgnore
+	private String orderBy;
+	
+	@JsonIgnore
+	private String order;
+	
+	@JsonIgnore
+	private String keyworkd;
+	
 	public String getId() {
 		return id;
 	}
@@ -40,4 +57,47 @@ public abstract class BaseMapping {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+	
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getKeyworkd() {
+		return keyworkd;
+	}
+
+	public void setKeyworkd(String keyworkd) {
+		this.keyworkd = keyworkd;
+	}
+	
+	
 }
