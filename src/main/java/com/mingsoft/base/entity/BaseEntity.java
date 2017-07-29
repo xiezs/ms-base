@@ -105,6 +105,7 @@ public abstract class  BaseEntity implements Serializable{
 	 * 排序方式
 	 */
 	protected String order;
+	
 
 	public int getCreateBy() {
 		return createBy;

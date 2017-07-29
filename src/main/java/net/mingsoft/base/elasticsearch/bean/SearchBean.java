@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *          创建日期：2017年6月2日<br/>
  *          历史修订：<br/>
  */
-public abstract class SearchBean {
+public  class SearchBean {
 
 
 	private int pageNumber;

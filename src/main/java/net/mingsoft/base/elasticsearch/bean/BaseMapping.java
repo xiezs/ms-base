@@ -20,6 +20,8 @@ The MIT License (MIT) * Copyright (c) 2017 铭飞科技(mingsoft.net)
  */
 package net.mingsoft.base.elasticsearch.bean;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -31,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *          创建日期：2017年6月2日<br/>
  *          历史修订：<br/>
  */
-public abstract class BaseMapping {
+public abstract class BaseMapping implements Serializable{
 
 	private String id;
 
