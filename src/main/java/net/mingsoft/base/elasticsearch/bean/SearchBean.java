@@ -21,6 +21,7 @@ The MIT License (MIT) * Copyright (c) 2017 铭飞科技(mingsoft.net)
 package net.mingsoft.base.elasticsearch.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mingsoft.util.StringUtil;
 
 /**
  * 
@@ -34,21 +35,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public  class SearchBean {
 
 
-	private int pageNumber;
+	private int pageNumber = 1;
 	
-	private int pageSize;
+	private int pageSize = 20; 
 	
-	private String orderBy;
+	private String orderBy = "id";
 	
-	private String order;
+	private String order = "desc";
 	
-	private String keyworkd;
+	private String keyword;
 
 	public int getPageNumber() {
 		return pageNumber;
 	}
 
 	public void setPageNumber(int pageNumber) {
+		if(pageNumber<=1) {
+			pageNumber = 1;
+		}
 		this.pageNumber = pageNumber;
 	}
 
@@ -65,6 +69,9 @@ public  class SearchBean {
 	}
 
 	public void setOrderBy(String orderBy) {
+		if(StringUtil.isBlank(orderBy)) {
+			orderBy = "id";
+		}
 		this.orderBy = orderBy;
 	}
 
@@ -74,16 +81,20 @@ public  class SearchBean {
 	
 
 	public void setOrder(String order) {
+		if(StringUtil.isBlank(order)) {
+			order = "desc";
+		}
 		this.order = order;
 	}
 
-	public String getKeyworkd() {
-		return keyworkd;
+	public String getKeyword() {
+		return keyword;
 	}
 
-	public void setKeyworkd(String keyworkd) {
-		this.keyworkd = keyworkd;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
+
 	
 	
 }
