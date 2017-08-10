@@ -40,7 +40,7 @@ import net.mingsoft.base.elasticsearch.bean.BaseMapping;
  *          创建日期：2012-03-15<br/>
  *          历史修订：<br/>
  */
-public interface IBaseBiz {
+public interface IBaseBiz<E> {
 
 	/**
 	 * 修改表
@@ -113,7 +113,7 @@ public interface IBaseBiz {
 	 * @param ene
 	 *            要删除的主键id
 	 */
-	void deleteEntity(BaseEntity entity);
+	void deleteEntity(E entity);
 
 	/**
 	 * 根据id删除实体
@@ -146,7 +146,7 @@ public interface IBaseBiz {
 	 *            实体ID
 	 * @return 返回实体
 	 */
-	BaseEntity getEntity(BaseEntity entity);
+	E getEntity(E entity);
 
 	/**
 	 * 更具ID查询实体信息
@@ -171,19 +171,24 @@ public interface IBaseBiz {
 	/**
 	 * 查询
 	 */
-	List<BaseEntity> query();
+	List<E> query();
 
 	/**
 	 * 查询
 	 */
 	List<BaseEntity> query(BaseEntity entity);
+	
+	/**
+	 * 查询
+	 */
+	List<E> query(E entity);
 
 	/**
 	 * 查询所有
 	 * 
 	 * @return 返回list实体数组
 	 */
-	List<BaseEntity> queryAll();
+	List<E> queryAll();
 
 	/**
 	 * 分页查询
@@ -197,7 +202,7 @@ public interface IBaseBiz {
 	 * @return 返回list实体数组
 	 */
 	@Deprecated
-	List<BaseEntity> queryByPage(PageUtil page, String orderBy, boolean order);
+	List<E> queryByPage(PageUtil page, String orderBy, boolean order);
 
 	/**
 	 * 动态sql查询
@@ -275,7 +280,7 @@ public interface IBaseBiz {
 	 * 
 	 * @param entity
 	 */
-	void updateEntity(BaseEntity entity);
+	void updateEntity(E entity);
 	
 	/**
 	 * 查询，只提供给搜索引擎做数据同步使用
