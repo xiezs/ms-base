@@ -39,7 +39,7 @@ import net.mingsoft.base.elasticsearch.bean.BaseMapping;
  *          创建日期：2012-03-15<br/>
  *          历史修订：<br/>
  */
-public interface IBaseDao<D extends Serializable> {
+public interface IBaseDao<E extends Serializable> {
 
 	/**
 	 * SQL修改表
@@ -180,19 +180,19 @@ public interface IBaseDao<D extends Serializable> {
 	 *            实体
 	 * @return 返回base实体
 	 */
-	BaseEntity getByEntity(BaseEntity entity);
+	<E>E getByEntity(BaseEntity entity);
 
 	/**
 	 * 查询
 	 */
-	List<BaseEntity> query(BaseEntity entity);
+	List<E> query(BaseEntity entity);
 
 	/**
 	 * 查询所有
 	 * 
 	 * @return 返回list数组
 	 */
-	List<BaseEntity> queryAll();
+	List<E> queryAll();
 
 	/**
 	 * 分页查询,4.5.8版本之后推荐使用query方法查询
@@ -208,7 +208,7 @@ public interface IBaseDao<D extends Serializable> {
 	 * @return 返回list数组
 	 */
 	@Deprecated
-	List<BaseEntity> queryByPage(@Param("pageNo") int pageNo, @Param("pageSize") int pageSize,
+	List<E> queryByPage(@Param("pageNo") int pageNo, @Param("pageSize") int pageSize,
 			@Param("orderBy") String orderBy, @Param("order") boolean order);
 
 	/**

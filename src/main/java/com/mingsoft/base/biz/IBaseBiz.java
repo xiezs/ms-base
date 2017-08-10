@@ -113,7 +113,7 @@ public interface IBaseBiz<E> {
 	 * @param ene
 	 *            要删除的主键id
 	 */
-	void deleteEntity(E entity);
+	void deleteEntity(BaseEntity entity);
 
 	/**
 	 * 根据id删除实体
@@ -146,7 +146,7 @@ public interface IBaseBiz<E> {
 	 *            实体ID
 	 * @return 返回实体
 	 */
-	E getEntity(E entity);
+	<E>E getEntity(BaseEntity entity);
 
 	/**
 	 * 更具ID查询实体信息
@@ -155,7 +155,7 @@ public interface IBaseBiz<E> {
 	 *            实体ID
 	 * @return 返回实体
 	 */
-	BaseEntity getEntity(int id);
+	<E>BaseEntity getEntity(int id);
 
 	/**
 	 * 添加记录
@@ -171,17 +171,12 @@ public interface IBaseBiz<E> {
 	/**
 	 * 查询
 	 */
-	List<E> query();
+	List<BaseEntity> query();
 
 	/**
 	 * 查询
 	 */
-	List<BaseEntity> query(BaseEntity entity);
-	
-	/**
-	 * 查询
-	 */
-	List<E> query(E entity);
+	List<E> query(BaseEntity entity);
 
 	/**
 	 * 查询所有
@@ -280,7 +275,7 @@ public interface IBaseBiz<E> {
 	 * 
 	 * @param entity
 	 */
-	void updateEntity(E entity);
+	void updateEntity(BaseEntity entity);
 	
 	/**
 	 * 查询，只提供给搜索引擎做数据同步使用

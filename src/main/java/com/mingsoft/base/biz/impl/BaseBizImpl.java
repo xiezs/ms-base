@@ -44,9 +44,9 @@ import net.mingsoft.base.elasticsearch.bean.BaseMapping;
  *          创建日期：2012-03-15<br/>
  *          历史修订：<br/>
  */
-public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
+public abstract class BaseBizImpl<E extends Serializable> implements IBaseBiz {
 
-	private IBaseDao<D> baseDao;
+	private IBaseDao<E> baseDao;
 
 	protected final Logger LOG = Logger.getLogger(this.getClass());
 
@@ -69,20 +69,20 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public List<BaseEntity> queryAll() {
+	public List<E> queryAll() {
 		// TODO Auto-generated method stub
 		return getDao().queryAll();
 	}
 
 	@Override
 	@Deprecated
-	public List<BaseEntity> queryByPage(PageUtil page, String orderBy, boolean order) {
+	public List<E> queryByPage(PageUtil page, String orderBy, boolean order) {
 		// TODO Auto-generated method stub
 		return getDao().queryByPage(page.getPageNo(), page.getPageSize(), orderBy, order);
 	}
 
 	@Override
-	public List<BaseEntity> query() {
+	public List<E> query() {
 		// TODO Auto-generated method stub
 		return getDao().query(null);
 	}
@@ -99,7 +99,7 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public List queryBySQL(String table, List<String> fields, Map wheres, Integer begin, Integer end) {
+	public List queryBySQL(String table, List fields, Map wheres, Integer begin, Integer end) {
 		// TODO Auto-generated method stub
 		return getDao().queryBySQL(table, fields, wheres, begin, end, null);
 	}
@@ -111,7 +111,7 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public List queryBySQL(String table, List<String> fields, Map wheres) {
+	public List queryBySQL(String table, List fields, Map wheres) {
 		// TODO Auto-generated method stub
 		return getDao().queryBySQL(table, fields, wheres, null, null, null);
 	}
@@ -135,7 +135,7 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public void createTable(String table, Map<Object, List> fileds) {
+	public void createTable(String table, Map fileds) {
 		// TODO Auto-generated method stub
 		getDao().createTable(table, fileds);
 	}
@@ -168,7 +168,7 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	 * 
 	 * @return
 	 */
-	protected abstract IBaseDao getDao();
+	protected abstract IBaseDao<E> getDao();
 
 	@Override
 	public void saveBatch(List list) {
@@ -187,13 +187,13 @@ public abstract class BaseBizImpl<D extends Serializable> implements IBaseBiz {
 	}
 
 	@Override
-	public BaseEntity getEntity(BaseEntity entity) {
+	public E getEntity(BaseEntity entity) {
 		// TODO Auto-generated method stub
 		return getDao().getByEntity(entity);
 	}
 
 	@Override
-	public List<BaseEntity> query(BaseEntity entity) {
+	public List<E> query(BaseEntity entity) {
 		// TODO Auto-generated method stub
 		return getDao().query(entity);
 	}
