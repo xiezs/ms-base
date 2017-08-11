@@ -35,7 +35,7 @@ import com.mingsoft.util.StringUtil;
 public  class SearchBean {
 
 
-	private int pageNumber = 1;
+	private int pageNo = 1;
 	
 	private int pageSize = 20; 
 	
@@ -45,15 +45,16 @@ public  class SearchBean {
 	
 	private String keyword;
 
-	public int getPageNumber() {
-		return pageNumber;
+
+	public int getPageNo() {
+		return pageNo;
 	}
 
-	public void setPageNumber(int pageNumber) {
-		if(pageNumber<=1) {
-			pageNumber = 1;
+	public void setPageNo(int pageNo) {
+		if(pageNo<=1) {
+			pageNo = 1;
 		}
-		this.pageNumber = pageNumber;
+		this.pageNo = pageNo;
 	}
 
 	public int getPageSize() {
