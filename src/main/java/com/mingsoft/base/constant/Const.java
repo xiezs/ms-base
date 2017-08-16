@@ -79,4 +79,13 @@ public final class Const {
 	public final static String SEPARATOR ="/";
 	
 
+	/**
+	 * 统一定义error错误值，用户返回消息统一
+	 */
+	public final static String ERROR ="error";
+	
+	/**
+	 * 统一定义error错误值，用户返回消息统一
+	 */
+	public final static String ERROR_500 ="/500/error.do";
 }
