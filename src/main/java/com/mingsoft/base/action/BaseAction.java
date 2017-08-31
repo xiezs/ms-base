@@ -548,6 +548,16 @@ public abstract class BaseAction {
 	 * @param filters 需要过滤调的属性字断,当只过滤一个属性的时候需要使用new String[]传递
 	 */
 	protected void outJson(HttpServletResponse response, List list,final String ... filters) {
+		this.outJson(response,list,filters);
+	}
+	
+	/**
+	 * 将object以json字符串格式输出，可以设置过滤属性字断
+	 * @param response
+	 * @param list 记录集合
+	 * @param filters 需要过滤调的属性字断,当只过滤一个属性的时候需要使用new String[]传递
+	 */
+	protected void outJson(HttpServletResponse response, Object obj,final String ... filters) {
 		PropertyFilter filter = new PropertyFilter() {
 			public boolean apply(Object source, String name, Object value) {
 			List list = Arrays.asList(filters);
@@ -560,7 +570,7 @@ public abstract class BaseAction {
 		SerializeWriter sw = new SerializeWriter();
 		JSONSerializer serializer = new JSONSerializer(sw);
 		serializer.getPropertyFilters().add(filter);
-		serializer.write(list);
+		serializer.write(obj);
 		this.outJson(response, sw.toString());
 	}
 	
