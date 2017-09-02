@@ -548,7 +548,20 @@ public abstract class BaseAction {
 	 * @param filters 需要过滤调的属性字断,当只过滤一个属性的时候需要使用new String[]传递
 	 */
 	protected void outJson(HttpServletResponse response, List list,final String ... filters) {
-		this.outJson(response,list,filters);
+		PropertyFilter filter = new PropertyFilter() {
+			public boolean apply(Object source, String name, Object value) {
+			List list = Arrays.asList(filters);
+		   if(list.contains(name)) {
+		           return false;
+		        }
+		        return true;
+		    }
+		};
+		SerializeWriter sw = new SerializeWriter();
+		JSONSerializer serializer = new JSONSerializer(sw);
+		serializer.getPropertyFilters().add(filter);
+		serializer.write(list);
+		this.outJson(response, sw.toString());
 	}
 	
 	/**
