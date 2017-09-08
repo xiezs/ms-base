@@ -81,11 +81,6 @@ public abstract class BaseBizImpl<E extends Serializable> implements IBaseBiz {
 		return getDao().queryByPage(page.getPageNo(), page.getPageSize(), orderBy, order);
 	}
 
-	@Override
-	public List<E> query() {
-		// TODO Auto-generated method stub
-		return getDao().query(null);
-	}
 
 	@Override
 	@Deprecated

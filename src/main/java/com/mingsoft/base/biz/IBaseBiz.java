@@ -168,10 +168,6 @@ public interface IBaseBiz<E> {
 	@SuppressWarnings("rawtypes")
 	void insertBySQL(String table, Map fields);
 
-	/**
-	 * 查询
-	 */
-	List<BaseEntity> query();
 
 	/**
 	 * 查询
