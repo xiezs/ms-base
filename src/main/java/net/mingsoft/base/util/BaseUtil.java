@@ -2,22 +2,27 @@
 package net.mingsoft.base.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.mingsoft.base.constant.e.BaseCookieEnum;
 import com.mingsoft.base.constant.e.BaseEnum;
 import com.mingsoft.base.constant.e.BaseSessionEnum;
@@ -501,7 +506,7 @@ public class BaseUtil {
 	public static Object getSession(BaseSessionEnum key) {
 		return SpringUtil.getRequest().getSession().getAttribute(key.toString());
 	}
-	
+
 	/**
 	 * 获取session的值
 	 * 
@@ -526,7 +531,7 @@ public class BaseUtil {
 	public static void setSession(BaseSessionEnum key, Object value) {
 		SpringUtil.getRequest().getSession().setAttribute(key.toString(), value);
 	}
-	
+
 	/**
 	 * 设置session的值
 	 * 
@@ -538,7 +543,6 @@ public class BaseUtil {
 	public static void setSession(String key, Object value) {
 		SpringUtil.getRequest().getSession().setAttribute(key, value);
 	}
-
 
 	/**
 	 * 移除session的值
@@ -733,6 +737,59 @@ public class BaseUtil {
 			b = true;
 		}
 		return b;// false pc true shouji
+
+	}
+
+	/**
+	 * 将资源文件转换成list输出
+	 * 
+	 * @param path
+	 *            资源文件路径 com.mingsoft.result.file.properties
+	 * @return 转换失败返回null
+	 */
+	public static List<Map<String, Object>> resourcesToList(String path) {
+		List list = new ArrayList();
+		ResourceBundle resources = ResourceBundle.getBundle(path);
+		Properties prop = new Properties();
+		Iterator keys = resources.keySet().iterator();
+		while (keys.hasNext()) {
+			Map map = new HashMap();
+			String id = keys.next() + "";
+			map.put("id", id);
+			map.put("value", prop.getProperty(id));
+			list.add(map);
+		}
+		return list;
+
+	}
+
+	/**
+	 * 枚举转list
+	 * 
+	 * @param cls
+	 *            实现了BaseEnum的子类
+	 * @return 转换失败返回null
+	 */
+	public static List<Map<String, Object>> enumToList(Class cls) {
+		List<Map<String, Object>> list = null;
+		if (cls != null) {
+			list = new ArrayList<Map<String, Object>>();
+			try {
+				Method method = cls.getDeclaredMethod("values");
+				BaseEnum[] be = (BaseEnum[]) method.invoke(cls);
+
+				for (BaseEnum e : be) {
+					Map map = new HashMap();
+					map.put("id", e.toInt());
+					map.put("value", e.toString());
+					list.add(map);
+				}
+			} catch (Exception e) {
+				return null;
+			}
+
+		}
+		return list;
 
 	}
 
