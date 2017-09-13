@@ -12,21 +12,26 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class SpringUtil {
 
-	// private static ThreadLocal<HttpServletRequest> requestLocal = new
-	// ThreadLocal<HttpServletRequest>();
+	private static ThreadLocal<HttpServletRequest> requestLocal = new ThreadLocal<HttpServletRequest>();
 	private static ThreadLocal<HttpServletResponse> responseLocal = new ThreadLocal<HttpServletResponse>();
-
+ 
 	/**
 	 * 获取当前请求对象
 	 * 
 	 * @return
 	 */
 	public static HttpServletRequest getRequest() {
-		try {
-			return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		} catch (Exception e) {
-			return null;
-		}
+//		if(requestLocal.get()==null) {
+			try {
+				return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+			} catch (Exception e) {
+				return null;
+			}
+			
+//		} else {
+//			return (HttpServletRequest) requestLocal.get();
+//		}
+		
 	}
 
 	/**
@@ -78,7 +83,13 @@ public class SpringUtil {
 		responseLocal.set(response);
 	}
 
+	public static void setResquest(HttpServletRequest request) {
+		requestLocal.set(request);
+	}
+	
 	public static HttpSession getSession() {
 		return SpringUtil.getRequest().getSession();
 	}
+	
+	
 }

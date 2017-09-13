@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +28,7 @@ import net.mingsoft.base.util.SpringUtil;
  *
  */
 public class SimpleMappingExceptionResolver implements HandlerExceptionResolver {
-
+	private final static Logger LOG = LoggerFactory.getLogger(SimpleMappingExceptionResolver.class);
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object object,
 			Exception exception) {
 		// 判断是否ajax请求
@@ -66,8 +68,10 @@ public class SimpleMappingExceptionResolver implements HandlerExceptionResolver 
 				writer.write(JSONObject.toJSONString(result));
 				writer.flush();
 				writer.close();
+				LOG.debug("ajax请求 异常");
 			} catch (IOException e) {
 				e.printStackTrace();
+				LOG.error(e.getMessage());
 			}
 		}
 		return null;

@@ -509,7 +509,6 @@ public abstract class BaseAction {
 			response.setContentType("application/json;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print(jsonDataStr);
-			LOG.debug(jsonDataStr);
 			out.flush();
 			out.close();
 		} catch (IOException e) {
