@@ -428,7 +428,6 @@ public abstract class BaseAction {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
 			out.print(JSONObject.toJSON(result));
-			LOG.debug(JSONObject.toJSON(result));
 			out.flush();
 			out.close();
 		} catch (IOException e) {
