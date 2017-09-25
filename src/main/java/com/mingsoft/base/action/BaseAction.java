@@ -47,6 +47,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.JSONSerializer;
@@ -559,7 +560,7 @@ public abstract class BaseAction {
 		JSONSerializer serializer = new JSONSerializer(sw);
 		serializer.getPropertyFilters().add(filter);
 		serializer.write(list);
-		this.outJson(response, sw.toString());
+		this.outJson(response,sw);
 	}
 	
 	/**
@@ -582,7 +583,7 @@ public abstract class BaseAction {
 		JSONSerializer serializer = new JSONSerializer(sw);
 		serializer.getPropertyFilters().add(filter);
 		serializer.write(obj);
-		this.outJson(response, sw.toString());
+		this.outJson(response, sw);
 	}
 	
 	

@@ -80,7 +80,7 @@ public class SpringUtil {
 	}
 
 	public static void setResponse(HttpServletResponse response) {
-		responseLocal.set(response);
+		responseLocal.set(response); 
 	}
 
 	public static void setResquest(HttpServletRequest request) {
