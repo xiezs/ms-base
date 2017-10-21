@@ -27,6 +27,9 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mingsoft.base.constant.e.DeleteEnum;
 
@@ -49,6 +52,8 @@ public abstract class  BaseEntity implements Serializable{
 	/**
 	 * 创建日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	protected Date createDate;
 
 	/**
@@ -78,6 +83,8 @@ public abstract class  BaseEntity implements Serializable{
 	/**
 	 * 最后更新日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	protected Date updateDate;
 
 	/**
