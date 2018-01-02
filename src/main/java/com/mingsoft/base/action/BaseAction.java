@@ -416,7 +416,7 @@ public abstract class BaseAction {
 	 * @param data
 	 *            数据
 	 */
-	protected void outJson(HttpServletResponse response, BaseEnum code, boolean flag, String msg, String data) {
+	protected void outJson(HttpServletResponse response, BaseEnum code, boolean flag, String msg, Object data) {
 		try {
 			response.setContentType("application/json;charset=utf-8");
 			ResultJson result = new ResultJson();
@@ -469,7 +469,22 @@ public abstract class BaseAction {
 		this.outJson(response,null, flag, msg, null);
 	}
 
-
+	/**
+	 * 输出json数据
+	 * 
+	 * @param response
+	 *            HttpServletResponse对象
+	 * @param code
+	 *            模块编号<br/>
+	 * @param flag
+	 *            成功状态,true:成功、false:失败
+	 * @param msg
+	 *            提示信息
+	 */
+	protected void outJson(HttpServletResponse response, boolean flag, Object obj) {
+		this.outJson(response,null, flag, null, obj);
+	}
+	
 	/**
 	 * 输出json数据
 	 * 

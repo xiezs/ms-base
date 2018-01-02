@@ -51,7 +51,7 @@ public class ResultJson {
 	/**
 	 * 返回数据
 	 */
-	private String resultData = "";
+	private Object resultData = "";
 
 	/**
 	 * 返回后跳的地址
@@ -126,7 +126,7 @@ public class ResultJson {
 	 * 获取返回数据
 	 * @return 返回数据
 	 */
-	public String getResultData() {
+	public Object getResultData() {
 		return resultData;
 	}
 
@@ -134,7 +134,7 @@ public class ResultJson {
 	 *  设置返回数据
 	 * @param resultData 返回数据
 	 */
-	public void setResultData(String resultData) {
+	public void setResultData(Object resultData) {
 		this.resultData = resultData;
 	}
 
