@@ -468,22 +468,6 @@ public abstract class BaseAction {
 	protected void outJson(HttpServletResponse response, boolean flag, String msg) {
 		this.outJson(response,null, flag, msg, null);
 	}
-
-	/**
-	 * 输出json数据
-	 * 
-	 * @param response
-	 *            HttpServletResponse对象
-	 * @param code
-	 *            模块编号<br/>
-	 * @param flag
-	 *            成功状态,true:成功、false:失败
-	 * @param msg
-	 *            提示信息
-	 */
-	protected void outJson(HttpServletResponse response, boolean flag, Object obj) {
-		this.outJson(response,null, flag, null, obj);
-	}
 	
 	/**
 	 * 输出json数据
