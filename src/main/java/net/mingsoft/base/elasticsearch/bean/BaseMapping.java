@@ -1,5 +1,5 @@
 /**
-The MIT License (MIT) * Copyright (c) 2017 铭飞科技(mingsoft.net)
+The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -26,12 +26,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
- * 搜索引擎mapping类
- * 
- * @author 铭飞团队
- * @version 版本号：<br/>
- *          创建日期：2017年6月2日<br/>
- *          历史修订：<br/>
+ * @ClassName:  BaseMapping   
+ * @Description:TODO(搜索引擎mapping类)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:45:05   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public abstract class BaseMapping implements Serializable{
 

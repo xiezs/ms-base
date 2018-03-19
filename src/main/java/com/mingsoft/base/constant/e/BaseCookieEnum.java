@@ -1,5 +1,5 @@
 /**
-The MIT License (MIT) * Copyright (c) 2016 铭飞科技(mingsoft.net)
+The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -21,13 +21,14 @@ The MIT License (MIT) * Copyright (c) 2016 铭飞科技(mingsoft.net)
 
 package com.mingsoft.base.constant.e;
 
+
 /**
- * 铭飞平台 基础层cookie枚举，所有的cookie定义必须实现该结构
- * 
- * @author 铭飞开发团队
- * @version 版本号：100-000-000<br/>
- *          创建日期：2016年3月31日<br/>
- *          历史修订：<br/>
+ * @ClassName:  BaseAction   
+ * @Description:TODO(基础层cookie枚举，所有的cookie定义必须实现该结构)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:28:27   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public interface BaseCookieEnum {
 	/**

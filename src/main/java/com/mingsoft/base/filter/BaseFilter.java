@@ -1,5 +1,5 @@
 /**
-The MIT License (MIT) * Copyright (c) 2016 铭飞科技(mingsoft.net)
+The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -37,12 +37,13 @@ import com.mingsoft.base.constant.Const;
 
 
 /**
- * 基础filer类，任何一个请求都能在页面获取base变量。子类调用的时候必须使用super();
- * @author 王天培QQ:78750478
- * @version 
- * 版本号：100-000-000<br/>
- * 创建日期：2012-03-15<br/>
- * 历史修订：<br/>
+ * 
+ * @ClassName:  BaseFilter   
+ * @Description:TODO(基础filer类，任何一个请求都能在页面获取base变量。子类调用的时候必须使用super();)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:42:48   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public abstract class BaseFilter implements Filter {
 

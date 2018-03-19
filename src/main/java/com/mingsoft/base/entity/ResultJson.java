@@ -1,5 +1,5 @@
 /**
-The MIT License (MIT) * Copyright (c) 2016 铭飞科技(mingsoft.net)
+The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -23,12 +23,13 @@ package com.mingsoft.base.entity;
 
 
 /**
- * json数据返回数据格式
- * @author 王天培QQ:78750478
- * @version 
- * 版本号：100-000-000<br/>
- * 创建日期：2012-03-15<br/>
- * 历史修订：<br/>
+ * 
+ * @ClassName:  ResultJson   
+ * @Description:TODO(json数据返回数据格式)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:41:53   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public class ResultJson {
 

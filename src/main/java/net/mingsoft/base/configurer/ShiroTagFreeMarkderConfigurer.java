@@ -1,5 +1,5 @@
 /**
-The MIT License (MIT) * Copyright (c) 2016 铭飞科技(mingsoft.net)
+The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -28,12 +28,13 @@ import com.jagregory.shiro.freemarker.ShiroTags;
 import freemarker.template.TemplateException;
 
 /**
- * shiro,freemarker标签设置
  * 
- * @author killfen
- * @version 项目名：ms-basic<br/>
- *          创建日期：:2015年9月9日 <br/>
- *          历史修订：<br/>
+ * @ClassName:  ShiroTagFreeMarkderConfigurer   
+ * @Description:TODO(shiro,freemarker标签设置)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:44:53   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public class ShiroTagFreeMarkderConfigurer
 		extends org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer {

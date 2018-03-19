@@ -1,3 +1,22 @@
+/**
+ * The MIT License (MIT) * Copyright (c) 2018 铭飞科技(mingsoft.net)
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package com.mingsoft.base.filter;
 
 import java.math.BigDecimal;
@@ -6,12 +25,12 @@ import com.alibaba.fastjson.serializer.ValueFilter;
 
 /**
  * 
- * 铭飞ms平台－doublue小数位置过滤
- * @author 铭飞开发团队
- * @version 
- * 版本号：100-000-000<br/>
- * 创建日期：2016年8月23日<br/>
- * 历史修订：<br/>
+ * @ClassName:  DoubleValueFilter   
+ * @Description:TODO(铭飞ms平台－doublue小数位置过滤)   
+ * @author: 铭飞开发团队
+ * @date:   2018年3月19日 下午3:43:40   
+ *     
+ * @Copyright: 2018 www.mingsoft.net Inc. All rights reserved.
  */
 public class DoubleValueFilter implements ValueFilter {
 
