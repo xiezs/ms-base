@@ -8,7 +8,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.mingsoft</groupId>
 	<artifactId>ms-base</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>ms-base tools Library</description>
 	<url>https://github.com/ming-soft/ms-base</url>
@@ -49,7 +49,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.1.RELEASE</spring.version>
 		<ms.util.version>1.0.1</ms.util.version>
-		<ms.proxy.version>1.0.1-SNAPSHOT</ms.proxy.version>
 		<ms.parser.version>1.0.0</ms.parser.version>
 		<ms.ueditor.version>1.0.0-SNAPSHOT</ms.ueditor.version>
 		<shiro-freemarker-tags.version>0.2-SNAPSHOT</shiro-freemarker-tags.version>
@@ -63,11 +62,6 @@
 			<groupId>net.mingsoft</groupId>
 			<artifactId>ms-util</artifactId>
 			<version>${ms.util.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.mingsoft</groupId>
-			<artifactId>ms-proxy</artifactId>
-			<version>${ms.proxy.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.mingsoft</groupId>
@@ -544,7 +538,7 @@
 					<showWarnings>true</showWarnings>
 					<compilerArguments>
 						<verbose />
-						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+						<bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</bootclasspath>
 					</compilerArguments>
 				</configuration>
 				<dependencies>
