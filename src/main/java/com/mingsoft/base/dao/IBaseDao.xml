@@ -62,7 +62,6 @@
 		values
 		<foreach item="field" index="key" collection="fields" open="("
 			separator="," close=")">#{field}</foreach>
-		;
 	</insert>
 	<!-- 根据sql动态新增结束 -->
 
@@ -73,7 +72,7 @@
 		PRIMARY KEY (`basicId`),
         CONSTRAINT `fk_${table}_basicId` FOREIGN KEY (`basicId`) REFERENCES `basic` (`basic_id`) ON DELETE CASCADE
 		) ENGINE=InnoDB
-		AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+		AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
 	</update>
 	<!-- 根据sql动态创建表结束 -->
 
