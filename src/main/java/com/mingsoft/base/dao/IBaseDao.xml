@@ -2,15 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mingsoft.base.dao.IBaseDao">
 
-	<!-- 根据sql动态查询开始 -->
-	<select id="queryBySQL" resultType="Map" statementType="STATEMENT">
+	<!-- mysql根据sql动态查询开始 -->
+	<select id="queryBySQL" resultType="Map" statementType="STATEMENT" databaseId="mysql">
 		select *
 		from ${table}
-
 		where
 		<foreach item="item" index="key" collection="wheres" open=""
-			separator="AND" close="">${key} = ${item}</foreach>
-
+			separator="AND" close="">${key} = ${item}
+		</foreach>
 		<if test="order !=null">
 			order by ${order} desc
 		</if>
@@ -21,7 +20,59 @@
 			</if>
 		</if>
 	</select>
-	<!-- 根据sql动态查询结束 -->
+	<!-- mysql根据sql动态查询结束 -->
+	<!-- oracle根据sql动态查询开始 -->
+	<select id="queryBySQL" resultType="Map" statementType="STATEMENT" databaseId="oracle">
+		select *
+		from 
+		<if  test=" end !=null ">
+			( SELECT b.*, ROWNUM RN FROM ( SELECT * FROM ${table}
+			<if test="order !=null">
+				order by ${order} desc
+			</if>
+			) b WHERE ROWNUM &lt;= #{end} )
+		</if>
+		<if  test=" end == null ">
+			${table}
+		</if>
+		where
+		<foreach item="item" index="key" collection="wheres" open=""
+			separator="AND" close="">${key} = ${item}
+		</foreach>
+		<if test="begin != null">
+			and RN &gt; ${begin}
+		</if>
+	</select>
+	<!-- oracle根据sql动态查询结束 -->
+	<!-- SqlServer根据sql动态查询开始 -->
+	<select id="queryBySQL" resultType="Map" statementType="STATEMENT" databaseId="SqlServer">
+		select *
+		from 
+		<if  test=" end !=null ">
+			(select *, ROW_NUMBER() OVER(Order by  
+			<if test=" orderField == null">
+				 basic_id desc ${table}_id
+			</if> 
+			<if test=" order != null">
+		     	 order by ${order} desc
+			</if>
+			) AS RowId from ${table} ) as b
+		</if>
+		<if  test=" end == null ">
+			${table}
+		</if>
+		where
+		<foreach item="item" index="key" collection="wheres" open=""
+			separator="AND" close="">${key} = ${item}
+		</foreach>
+		<if test=" begin !=null ">
+			and RowId between #{begin}
+		</if>
+		<if test=" end !=null ">
+			and #{end}
+		</if>
+	</select>
+	<!-- SqlServer根据sql动态查询结束 -->
 
 	<!-- 根据sql动态查询开始 -->
 	<select id="countBySQL" resultType="int" statementType="STATEMENT">
@@ -29,11 +80,12 @@
 		from ${table}
 		where
 		<foreach item="item" index="key" collection="wheres" open=""
-			separator="AND" close="">${key} = ${item}</foreach>
+			separator="AND" close="">${key} = ${item}
+		</foreach>
 	</select>
 	<!-- 根据sql动态查询结束 -->
 
-	<!-- 根据sql动态更新开始 -->
+	<!-- mysql或SqlServer根据sql动态更新开始 -->
 	<update id="updateBySQL">
 		update ${table} set
 		<foreach item="field" index="name" collection="fields" open=""
@@ -44,7 +96,18 @@
 		<foreach item="item" index="key" collection="wheres" open=""
 			separator="AND" close="">${key} = ${item}</foreach>
 	</update>
-	<!-- 根据sql动态更新结束 -->
+	<!-- mysql或SqlServer根据sql动态更新结束 -->
+	<!-- oracle根据sql动态更新开始 -->
+	<update id="updateBySQL" databaseId="oracle">
+		update ${table} set
+		<foreach item="field" index="name" collection="fields" open="begin" close=";end;" separator=";">
+			`${name}`=#{field}
+		</foreach>
+		where
+		<foreach item="item" index="key" collection="wheres" open=""
+			separator="AND" close="">${key} = ${item}</foreach>
+	</update>
+	<!-- oracle根据sql动态更新结束 -->
 
 	<!-- 根据sql动态删除开始 -->
 	<update id="deleteBySQL">
@@ -64,37 +127,60 @@
 			separator="," close=")">#{field}</foreach>
 	</insert>
 	<!-- 根据sql动态新增结束 -->
-
+	<!-- oracle根据sql动态新增开始--> 
+	<insert id="insertBySQL" databaseId="oracle">
+		<selectKey resultType="Integer"  keyProperty="basicId" order="BEFORE">
+			select seq_${table}_id.nextval as ${table}Id from dual
+		</selectKey>
+		insert into ${table}
+		<foreach item="field" index="key" collection="fields" open="("
+			separator="," close=")">`${key}`</foreach>
+		values
+		<foreach item="field" index="key" collection="fields" open="("
+			separator="," close=")">#{field}</foreach>
+	</insert> 
+	<!-- oracle根据sql动态新增结束-->
 	<!-- 根据sql动态创建表开始 -->
-	<update id="createTable" statementType="STATEMENT">
-		CREATE TABLE `${table}` (
-		`basicId` int(11) NOT NULL,
-		PRIMARY KEY (`basicId`),
-        CONSTRAINT `fk_${table}_basicId` FOREIGN KEY (`basicId`) REFERENCES `basic` (`basic_id`) ON DELETE CASCADE
-		) ENGINE=InnoDB
-		AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+	<sql id="createTables">
+		 CONSTRAINT fk_${table}_id FOREIGN KEY (basicId) REFERENCES basic (basic_id) ON DELETE CASCADE
+	</sql>
+	<update id="createTable" statementType="STATEMENT" databaseId="mysql">
+		CREATE TABLE ${table} (
+		basicId int(11) NOT NULL,
+		PRIMARY KEY (basicId),
+        <include refid="createTables"></include>
+		) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+	</update>
+	<update id="createTable" statementType="STATEMENT" databaseId="sqlServer">
+		CREATE TABLE ${table} (
+		basicId int NOT NULL,
+		PRIMARY KEY (basicId),
+        <include refid="createTables"></include>
+		)
+	</update>
+	<update id="createTable" statementType="STATEMENT" databaseId="oracle">
+		CREATE TABLE ${table} (
+		basicId NUMBER(10,0) NOT NULL primary key,
+       	<include refid="createTables"></include>
+		)
 	</update>
 	<!-- 根据sql动态创建表结束 -->
-
 	<!-- 根据sql动态更新表开始 -->
 
 	<update id="alterTable" statementType="STATEMENT">
 		<choose>
 			<when test="type=='add'">
-				ALTER TABLE ${table} add `${fileds.fieldName}` ${fileds.fieldType}
-				<if test="fileds.default !=null">default '${fileds.default}'</if>
-
-
+				ALTER TABLE ${table} add ${fileds.fieldName} 2 ${fileds.fieldType}
+				<if test="fileds.default !=null">default ${fileds.default}</if>
 			</when>
 			<when test="type=='modify'">
-				ALTER TABLE ${table} change `${fileds.fieldOldName}`
-				`${fileds.fieldName}` ${fileds.fieldType}
-				<if test="fileds.default !=null">default '${fileds.default}'</if>
-
+				ALTER TABLE ${table} change ${fileds.fieldOldName}
+				${fileds.fieldName} ${fileds.fieldType}
+				<if test="fileds.default !=null">default ${fileds.default}</if>
 			</when>
 			<when test="type=='drop'">
 				ALTER TABLE ${table} drop column
-				`${fileds.fieldName}`
+				${fileds.fieldName}
 			</when>
 		</choose>
 
