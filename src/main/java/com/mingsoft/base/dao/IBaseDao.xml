@@ -134,10 +134,10 @@
 		</selectKey>
 		insert into ${table}
 		<foreach item="field" index="key" collection="fields" open="("
-			separator="," close=")">`${key}`</foreach>
+			separator="," close=")">${key}</foreach>
 		values
-		<foreach item="field" index="key" collection="fields" open="("
-			separator="," close=")">#{field}</foreach>
+		<foreach item="field" index="key" collection="fields" open="(" 
+			separator="," close=")">${field}</foreach>
 	</insert> 
 	<!-- oracle根据sql动态新增结束-->
 	<!-- 根据sql动态创建表开始 -->
@@ -170,17 +170,16 @@
 	<update id="alterTable" statementType="STATEMENT">
 		<choose>
 			<when test="type=='add'">
-				ALTER TABLE ${table} add ${fileds.fieldName} 2 ${fileds.fieldType}
-				<if test="fileds.default !=null">default ${fileds.default}</if>
+				 ALTER TABLE ${table} add ${fileds.fieldName} ${fileds.fieldType}
+				<if test="fileds.default !=null and fileds.default !=''">default ${fileds.default}</if>
 			</when>
 			<when test="type=='modify'">
 				ALTER TABLE ${table} change ${fileds.fieldOldName}
 				${fileds.fieldName} ${fileds.fieldType}
-				<if test="fileds.default !=null">default ${fileds.default}</if>
+				<if test="fileds.default !=null and fileds.default !=''">default ${fileds.default}</if>
 			</when>
 			<when test="type=='drop'">
-				ALTER TABLE ${table} drop column
-				${fileds.fieldName}
+				ALTER TABLE ${table} drop column ${fileds.fieldName}
 			</when>
 		</choose>
 
