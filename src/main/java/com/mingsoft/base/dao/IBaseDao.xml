@@ -25,21 +25,21 @@
 	<select id="queryBySQL" resultType="Map" statementType="STATEMENT" databaseId="oracle">
 		select *
 		from 
-		<if  test=" end !=null ">
+		<if  test=" end !=null and end &gt; 0">
 			( SELECT b.*, ROWNUM RN FROM ( SELECT * FROM ${table}
 			<if test="order !=null">
 				order by ${order} desc
 			</if>
 			) b WHERE ROWNUM &lt;= #{end} )
 		</if>
-		<if  test=" end == null ">
+		<if  test=" end == null and end &gt; 0">
 			${table}
 		</if>
 		where
 		<foreach item="item" index="key" collection="wheres" open=""
 			separator="AND" close="">${key} = ${item}
 		</foreach>
-		<if test="begin != null">
+		<if test="begin != null and begin &gt; 0">
 			and RN &gt; ${begin}
 		</if>
 	</select>
@@ -129,15 +129,21 @@
 	<!-- 根据sql动态新增结束 -->
 	<!-- oracle根据sql动态新增开始--> 
 	<insert id="insertBySQL" databaseId="oracle">
-		<selectKey resultType="Integer"  keyProperty="basicId" order="BEFORE">
-			select seq_${table}_id.nextval as ${table}Id from dual
+		<selectKey resultType="Integer"  keyProperty="Id" order="BEFORE">
+			select seq_${table}_id.nextval as Id from dual
 		</selectKey>
 		insert into ${table}
-		<foreach item="field" index="key" collection="fields" open="("
-			separator="," close=")">${key}</foreach>
-		values
-		<foreach item="field" index="key" collection="fields" open="(" 
-			separator="," close=")">${field}</foreach>
+			(Id,
+		<foreach item="field" index="key" collection="fields" separator=",">
+			"${key}"
+		</foreach>
+			)
+		values(
+			#{Id},
+		<foreach item="field" index="key" collection="fields" separator=",">
+			#{field}
+		</foreach>
+			)
 	</insert> 
 	<!-- oracle根据sql动态新增结束-->
 	<!-- 根据sql动态创建表开始 -->
@@ -166,7 +172,20 @@
 	</update>
 	<!-- 根据sql动态创建表结束 -->
 	<!-- 根据sql动态更新表开始 -->
-
+	<sql id="alterTableSql">
+		ALTER TABLE ${table} change ${fileds.fieldOldName} ${fileds.fieldName} ${fileds.fieldType}
+		<if test="fileds.default !=null and fileds.default !=''">
+			default ${fileds.default}
+		</if>
+	</sql>
+	<sql id="alterTableSql" databaseId="sqlServer">
+		<if test="fileds.default ==null and fileds.default ==''">
+			exec sp_rename '${table}.${fileds.fieldOldName}','${fileds.fieldName}','column';
+		</if>
+		<if test="fileds.default !=null and fileds.default !=''">
+			alter table role add default ${fileds.default} for ab with values default 
+		</if>
+	</sql>
 	<update id="alterTable" statementType="STATEMENT">
 		<choose>
 			<when test="type=='add'">
@@ -174,9 +193,7 @@
 				<if test="fileds.default !=null and fileds.default !=''">default ${fileds.default}</if>
 			</when>
 			<when test="type=='modify'">
-				ALTER TABLE ${table} change ${fileds.fieldOldName}
-				${fileds.fieldName} ${fileds.fieldType}
-				<if test="fileds.default !=null and fileds.default !=''">default ${fileds.default}</if>
+				<include refid="alterTableSql"></include>
 			</when>
 			<when test="type=='drop'">
 				ALTER TABLE ${table} drop column ${fileds.fieldName}
