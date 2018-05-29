@@ -194,6 +194,12 @@
 	</sql>
 	<sql id="alterTableSql" databaseId="oracle"> 
 		BEGIN
+			<if test="fileds.default == null">
+				EXECUTE immediate 'alter table ${table} modify "${fileds.fieldOldName}" default null';
+			</if>
+			<if test="fileds.default != null">
+				EXECUTE immediate 'alter table ${table} modify "${fileds.fieldOldName}" default ${fileds.default}';
+			</if>
 			<if test="fileds.fieldType !=null and fileds.fieldType !=''">
 				<if test="fileds.fieldType =='int(11)'">
 					<include refid="alterTableOracleType"></include>
@@ -211,12 +217,6 @@
 					<include refid="alterTableOracleType"></include>
 					${fileds.fieldType})';
 				</if>
-			</if>
-			<if test="fileds.default == null">
-				EXECUTE immediate 'alter table ${table} modify "${fileds.fieldOldName}" default null';
-			</if>
-			<if test="fileds.default != null">
-				EXECUTE immediate 'alter table ${table} modify "${fileds.fieldOldName}" default ${fileds.default}';
 			</if>
 			<if test="fileds.fieldName !='' and fileds.fieldOldName != fileds.fieldName">
 				EXECUTE immediate 'alter table ${table} rename column "${fileds.fieldOldName}" to "${fileds.fieldName}"';
