@@ -50,8 +50,8 @@
 		<spring.version>4.3.1.RELEASE</spring.version>
 		<ms.util.version>1.0.1</ms.util.version>
 		<ms.parser.version>1.0.0</ms.parser.version>
-		<ms.ueditor.version>1.0.0-SNAPSHOT</ms.ueditor.version>
-		<shiro-freemarker-tags.version>0.2-SNAPSHOT</shiro-freemarker-tags.version>
+		<ms.ueditor.version>1.0.2</ms.ueditor.version>
+		<shiro-freemarker-tags.version>1.0.0</shiro-freemarker-tags.version>
 		<activiti.version>5.21.0</activiti.version>
 		<spring.security.version>4.1.2.RELEASE</spring.security.version>
 		<spring-data-elasticsearch>2.1.4.RELEASE</spring-data-elasticsearch>
