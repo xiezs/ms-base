@@ -47,7 +47,7 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.3.1.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<ms.util.version>1.0.1</ms.util.version>
 		<ms.parser.version>1.0.0</ms.parser.version>
 		<ms.ueditor.version>1.0.2</ms.ueditor.version>
